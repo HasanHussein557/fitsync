@@ -1,0 +1,96 @@
+@page
+@model Presentation.Pages.Account.OnboardingModel
+@{
+    ViewData["Title"] = "Complete Your Profile";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-5">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Complete Your Profile</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> Please provide some information to help us customize your fitness experience.
+                    </div>
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Name" class="form-label">Your Full Name</label>
+                                    <input asp-for="Athlete.Name" class="form-control" required />
+                                    <span asp-validation-for="Athlete.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Age" class="form-label">Age</label>
+                                    <input asp-for="Athlete.Age" class="form-control" type="number" min="16" max="100" required />
+                                    <span asp-validation-for="Athlete.Age" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Weight" class="form-label">Weight (kg)</label>
+                                    <input asp-for="Athlete.Weight" class="form-control" type="number" min="30" max="250" required />
+                                    <span asp-validation-for="Athlete.Weight" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Height" class="form-label">Height (cm)</label>
+                                    <input asp-for="Athlete.Height" class="form-control" type="number" min="100" max="250" required />
+                                    <span asp-validation-for="Athlete.Height" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Sex" class="form-label">Sex</label>
+                                    <select asp-for="Athlete.Sex" class="form-select" required>
+                                        <option value="">Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <span asp-validation-for="Athlete.Sex" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Athlete.Goal" class="form-label">Fitness Goal</label>
+                                    <select asp-for="Athlete.Goal" class="form-select" required>
+                                        <option value="">Select</option>
+                                        <option value="Weight Loss">Weight Loss</option>
+                                        <option value="Muscle Gain">Muscle Gain</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Performance">Athletic Performance</option>
+                                    </select>
+                                    <span asp-validation-for="Athlete.Goal" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Complete Setup</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

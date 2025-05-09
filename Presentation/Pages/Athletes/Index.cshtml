@@ -1,0 +1,75 @@
+@page
+@model Presentation.Pages.Athletes.IndexModel
+@{
+    ViewData["Title"] = "Athletes";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Athletes</h1>
+        <a href="/Athletes/Create" class="btn btn-primary px-4 py-2 rounded">
+            <i class="fas fa-plus"></i> Create New
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            @TempData["Message"]
+        </div>
+    }
+
+    @if (Model.Athletes.Count > 0)
+    {
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-100 text-gray-800">
+                    <tr>
+                        <th class="py-3 px-4 text-left">Name</th>
+                        <th class="py-3 px-4 text-left">Age</th>
+                        <th class="py-3 px-4 text-left">Sex</th>
+                        <th class="py-3 px-4 text-left">Goal</th>
+                        <th class="py-3 px-4 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @foreach (var athlete in Model.Athletes)
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4">
+                                <a href="/Athletes/Details/@athlete.Id" class="text-blue-600 hover:text-blue-800">
+                                    @athlete.Name
+                                </a>
+                            </td>
+                            <td class="py-3 px-4">@athlete.Age</td>
+                            <td class="py-3 px-4">@athlete.Sex</td>
+                            <td class="py-3 px-4">@athlete.Goal</td>
+                            <td class="py-3 px-4 text-center">
+                                <div class="flex justify-center space-x-2">
+                                    <a href="/Athletes/Edit/@athlete.Id" class="text-blue-600 hover:text-blue-800">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="/Athletes/Details/@athlete.Id" class="text-green-600 hover:text-green-800">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="/Athletes/Delete/@athlete.Id" class="text-red-600 hover:text-red-800">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="bg-yellow-50 p-6 rounded-lg shadow-sm text-center">
+            <p class="text-yellow-600 mb-4">No athletes found in the database.</p>
+            <a href="/Athletes/Create" class="btn btn-primary px-4 py-2 rounded">
+                Create Your First Athlete
+            </a>
+        </div>
+    }
+</div> 

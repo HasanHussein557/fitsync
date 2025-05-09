@@ -1,0 +1,101 @@
+@page
+@model WorkoutSchemaDetailsModel
+@{
+    ViewData["Title"] = Model.WorkoutSchema?.Name ?? "Workout Details";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">@Model.WorkoutSchema?.Name</h1>
+        <a href="/WorkoutSchemas" class="text-blue-500 hover:text-blue-700">
+            &laquo; Back to Workouts
+        </a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            @Model.StatusMessage
+        </div>
+    }
+    
+    @if (Model.IsLoading)
+    {
+        <div class="flex justify-center py-10">
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 border-t-2 border-blue-500 border-solid rounded-full animate-spin"></div>
+                <p class="mt-3">Loading workout details...</p>
+            </div>
+        </div>
+    }
+    else if (Model.WorkoutSchema != null)
+    {
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-wrap justify-between mb-6">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-600">Created on</p>
+                    <p class="font-semibold">@Model.WorkoutSchema.CreatedDate.ToString("MMMM dd, yyyy")</p>
+                </div>
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-600">Goal</p>
+                    <p class="font-semibold">@Model.WorkoutSchema.Goal.ToUpper()</p>
+                </div>
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-600">Workouts Per Week</p>
+                    <p class="font-semibold">@Model.WorkoutSchema.WorkoutsPerWeek</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Total Exercises</p>
+                    <p class="font-semibold">@Model.WorkoutSchema.Workouts.Sum(w => w.Exercises.Count)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <h2 class="text-xl font-bold mb-6">Workout Schedule</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @foreach (var workout in Model.WorkoutSchema.Workouts)
+                {
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="bg-blue-500 text-white p-4">
+                            <h3 class="font-bold text-lg">@workout.Name</h3>
+                            <p class="text-sm">Day @workout.DayOfWeek</p>
+                        </div>
+                        <div class="p-4">
+                            <table class="w-full border-collapse">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="text-left p-2">Exercise</th>
+                                        <th class="text-center p-2">Sets</th>
+                                        <th class="text-center p-2">Reps</th>
+                                        <th class="text-center p-2">Rest</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var exercise in workout.Exercises)
+                                    {
+                                        <tr class="border-b">
+                                            <td class="p-2">@exercise.Name</td>
+                                            <td class="text-center p-2">@exercise.Sets</td>
+                                            <td class="text-center p-2">@exercise.Reps</td>
+                                            <td class="text-center p-2">@exercise.Rest</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <div class="mt-8 flex justify-center">
+            <a href="/WorkoutSchemas" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">
+                Back to All Workouts
+            </a>
+            <a href="/WorkoutSchema" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                Create New Workout
+            </a>
+        </div>
+    }
+</div> 

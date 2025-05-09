@@ -1,0 +1,12 @@
+@if (TempData["AuthMessage"] != null)
+{
+    var messageType = TempData["AuthMessageType"]?.ToString() ?? "warning";
+    var alertClass = messageType == "success" ? "alert-success" : 
+                     messageType == "danger" ? "alert-danger" : 
+                     messageType == "info" ? "alert-info" : "alert-warning";
+    
+    <div class="alert @alertClass alert-dismissible fade show" role="alert">
+        @TempData["AuthMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+} 

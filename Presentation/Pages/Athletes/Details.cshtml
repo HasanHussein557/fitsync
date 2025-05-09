@@ -1,0 +1,88 @@
+@page "{id:int}"
+@model Presentation.Pages.Athletes.DetailsModel
+@{
+    ViewData["Title"] = "Athlete Details";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <div class="mb-6">
+        <a href="/Athletes" class="text-blue-600 hover:text-blue-800">
+            <i class="fas fa-arrow-left"></i> Back to Athletes
+        </a>
+    </div>
+
+    @if (!ModelState.IsValid)
+    {
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <ul>
+                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (Model.Athlete != null)
+    {
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="bg-blue-600 p-4">
+                <h1 class="text-2xl font-bold text-white">
+                    @Model.Athlete.FirstName @Model.Athlete.LastName
+                </h1>
+            </div>
+            
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4 text-gray-700">Personal Information</h2>
+                        <div class="space-y-3">
+                            <div class="flex">
+                                <span class="font-medium w-32 text-gray-600">Age:</span>
+                                <span>@Model.Athlete.Age years</span>
+                            </div>
+                            <div class="flex">
+                                <span class="font-medium w-32 text-gray-600">Sex:</span>
+                                <span>@Model.Athlete.Sex</span>
+                            </div>
+                            <div class="flex">
+                                <span class="font-medium w-32 text-gray-600">Height:</span>
+                                <span>@Model.Athlete.Height cm</span>
+                            </div>
+                            <div class="flex">
+                                <span class="font-medium w-32 text-gray-600">Weight:</span>
+                                <span>@Model.Athlete.Weight kg</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4 text-gray-700">Fitness Profile</h2>
+                        <div class="space-y-3">
+                            <div class="flex">
+                                <span class="font-medium w-32 text-gray-600">Goal:</span>
+                                <span>@Model.Athlete.Goal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex space-x-4">
+                    <a href="/Athletes/Edit/@Model.Athlete.Id" class="btn btn-primary px-4 py-2 rounded">
+                        Edit Athlete
+                    </a>
+                    <a href="/Athletes/Delete/@Model.Athlete.Id" class="btn btn-danger px-4 py-2 rounded bg-red-600 text-white">
+                        Delete Athlete
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="bg-yellow-50 p-6 rounded-lg shadow-sm text-center">
+            <p class="text-yellow-600 mb-4">Athlete not found.</p>
+            <a href="/Athletes" class="text-blue-600 hover:text-blue-800">Return to Athletes List</a>
+        </div>
+    }
+</div> 

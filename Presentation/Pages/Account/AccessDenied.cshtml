@@ -1,0 +1,14 @@
+@page
+@model Presentation.Pages.Account.AccessDeniedModel
+@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<div class="text-center">
+    <h1 class="text-danger">Access Denied</h1>
+    <p class="lead">You do not have permission to access this resource.</p>
+    <img src="~/images/access-denied.svg" alt="Access Denied" class="img-fluid my-4" style="max-width: 300px;" />
+    <p>
+        <a asp-page="/Index" class="btn btn-primary">Return to Home</a>
+    </p>
+</div> 

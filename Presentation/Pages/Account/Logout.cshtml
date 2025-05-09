@@ -1,0 +1,19 @@
+@page
+@model Presentation.Pages.Account.LogoutModel
+@{
+    ViewData["Title"] = "Logout";
+}
+
+<div class="text-center">
+    <h1>Logging you out...</h1>
+    <p>You are being logged out and redirected to the home page.</p>
+</div>
+
+@section Scripts {
+    <script>
+        // Redirect automatically after a short delay
+        setTimeout(function() {
+            window.location.href = '/';
+        }, 1500);
+    </script>
+} 

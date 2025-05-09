@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/Presentation.k1kcl344lb.bundle.scp.css"
     },
     {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/output.css",
+      "PackagePath": "staticwebassets/css/output.css"
+    },
+    {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
