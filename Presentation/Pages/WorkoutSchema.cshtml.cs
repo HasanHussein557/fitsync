@@ -122,6 +122,7 @@ public class WorkoutSchemaModel : PageModel
         WorkoutsPerWeek = 3;
     }
 
+    // Generate the workout plan
     public async Task<IActionResult> OnPostAsync()
     {
         try
@@ -133,7 +134,7 @@ public class WorkoutSchemaModel : PageModel
                 Weight, Height, Age, Sex, Goal, FitnessLevel, WorkoutsPerWeek);
             
             // Call the service to generate the workout plan
-            var response = await _workoutSchemaGenerator.GenerateWorkoutPlanAsync(
+            var response = await _workoutSchemaGenerator.GenerateWorkoutSchemaAsync(
                 Weight, Height, Age, Sex, Goal, WorkoutsPerWeek);
 
             // Deserialize to our model
@@ -158,25 +159,43 @@ public class WorkoutSchemaModel : PageModel
         }
     }
 
-    public async Task<IActionResult> OnPostSaveWorkoutAsync(string rawWorkoutPlan, string schemaName)
+    // Save the workout plan
+    public async Task<IActionResult> OnPostSaveAsync(string rawWorkoutPlan, string schemaName)
     {
+        _logger.LogInformation("OnPostSaveAsync called with rawWorkoutPlan length: {Length}, schemaName: {SchemaName}", 
+            rawWorkoutPlan?.Length ?? 0, schemaName ?? "null");
+        
+        // Also log the ViewData content for debugging
+        var viewDataJson = ViewData["WorkoutPlanJson"]?.ToString();
+        _logger.LogInformation("ViewData WorkoutPlanJson length: {Length}", viewDataJson?.Length ?? 0);
+        
         try
         {
             if (string.IsNullOrEmpty(rawWorkoutPlan))
             {
+                _logger.LogWarning("No workout plan data provided to save");
                 ModelState.AddModelError(string.Empty, "No workout plan data to save.");
                 return Page();
             }
 
+            // Log a sample of the rawWorkoutPlan for debugging
+            var sampleData = rawWorkoutPlan.Length > 200 ? rawWorkoutPlan.Substring(0, 200) + "..." : rawWorkoutPlan;
+            _logger.LogInformation("Raw workout plan sample: {Sample}", sampleData);
+
             // Get current user ID and athlete ID
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            _logger.LogInformation("Saving workout for user ID: {UserId}", userId);
+            
             var athlete = await _athleteService.GetAthleteForUserAsync(userId);
             
             if (athlete == null)
             {
+                _logger.LogWarning("No athlete profile found for user ID: {UserId}", userId);
                 ModelState.AddModelError(string.Empty, "You need to create an athlete profile first.");
                 return Page();
             }
+
+            _logger.LogInformation("Found athlete ID: {AthleteId} for user ID: {UserId}", athlete.Id, userId);
 
             try
             {
@@ -190,10 +209,13 @@ public class WorkoutSchemaModel : PageModel
                 return Page();
             }
 
-            // Set default values for required fields if they're not provided
-            if (string.IsNullOrEmpty(Sex)) Sex = "male";
-            if (string.IsNullOrEmpty(Goal)) Goal = "general_fitness";
-            if (string.IsNullOrEmpty(schemaName)) schemaName = $"{Goal} Workout - {DateTime.Now:yyyy-MM-dd}";
+            // Ensure we have values for Sex and Goal
+            Sex = string.IsNullOrEmpty(Sex) ? (athlete.Sex ?? "Male") : Sex;
+            Goal = string.IsNullOrEmpty(Goal) ? (athlete.Goal ?? "Maintenance") : Goal;
+            schemaName = string.IsNullOrEmpty(schemaName) ? $"{Goal} Workout - {DateTime.Now:yyyy-MM-dd}" : schemaName;
+
+            _logger.LogInformation("Creating workout schema with name: {SchemaName}, Goal: {Goal}, Sex: {Sex}", 
+                schemaName, Goal, Sex);
 
             // Convert from the presentation model to the domain model
             var workoutSchema = new Core.Domain.Entities.WorkoutSchema
@@ -206,6 +228,9 @@ public class WorkoutSchemaModel : PageModel
                 Workouts = new List<Core.Domain.Entities.Workout>()
             };
 
+            _logger.LogInformation("Workout schema created with {WorkoutCount} workout sessions", 
+                WorkoutPlan.WorkoutSessions.Count);
+
             // Convert each workout session to domain workout
             for (int i = 0; i < WorkoutPlan.WorkoutSessions.Count; i++)
             {
@@ -216,6 +241,9 @@ public class WorkoutSchemaModel : PageModel
                     DayOfWeek = i + 1,
                     Exercises = new List<Core.Domain.Entities.Exercise>()
                 };
+
+                _logger.LogInformation("Processing workout {WorkoutIndex} with {ExerciseCount} exercises", 
+                    i + 1, session.Exercises.Count);
 
                 // Convert each exercise
                 foreach (var exercise in session.Exercises)
@@ -239,10 +267,16 @@ public class WorkoutSchemaModel : PageModel
                 workoutSchema.Workouts.Add(workout);
             }
 
+            _logger.LogInformation("About to save workout schema to database...");
+
             // Save to the database
             var savedSchema = await _workoutSchemaService.SaveWorkoutSchemaAsync(workoutSchema);
             
+            _logger.LogInformation("Workout schema saved successfully with ID: {SchemaId}", savedSchema.Id);
+            
             StatusMessage = $"Workout schema '{schemaName}' successfully saved!";
+            
+            _logger.LogInformation("Redirecting to WorkoutSchemas page with status message: {StatusMessage}", StatusMessage);
             
             return RedirectToPage("/WorkoutSchemas");
         }
@@ -260,6 +294,7 @@ public class WorkoutSchemaModel : PageModel
         }
     }
 
+    // Workout plan model
     public class WorkoutPlanModel
     {
         [JsonPropertyName("warmup")]
@@ -278,6 +313,7 @@ public class WorkoutSchemaModel : PageModel
         public WorkoutComponent Cooldown { get; set; } = new WorkoutComponent();
     }
     
+    // Workout component
     public class WorkoutComponent
     {
         [JsonPropertyName("description")]
@@ -290,6 +326,7 @@ public class WorkoutSchemaModel : PageModel
         public int DurationMinutes { get; set; } = 0;
     }
     
+    // Workout session
     public class WorkoutSession
     {
         [JsonPropertyName("name")]
@@ -305,6 +342,7 @@ public class WorkoutSchemaModel : PageModel
         public int DurationMinutes { get; set; } = 0;
     }
     
+    // Exercise
     public class Exercise
     {
         [JsonPropertyName("name")]

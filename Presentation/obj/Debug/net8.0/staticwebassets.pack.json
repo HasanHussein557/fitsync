@@ -2,7 +2,23 @@
   "Files": [
     {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/obj/Debug/net8.0/scopedcss/projectbundle/Presentation.bundle.scp.css",
-      "PackagePath": "staticwebassets/Presentation.k1kcl344lb.bundle.scp.css"
+      "PackagePath": "staticwebassets/Presentation.l9ndviwjdo.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/about.txt",
+      "PackagePath": "staticwebassets/about.txt"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-192x192.png",
+      "PackagePath": "staticwebassets/android-chrome-192x192.png"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-512x512.png",
+      "PackagePath": "staticwebassets/android-chrome-512x512.png"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/apple-touch-icon.png",
+      "PackagePath": "staticwebassets/apple-touch-icon.png"
     },
     {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/output.css",
@@ -11,6 +27,14 @@
     {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-16x16.png",
+      "PackagePath": "staticwebassets/favicon-16x16.png"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-32x32.png",
+      "PackagePath": "staticwebassets/favicon-32x32.png"
     },
     {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon.ico",
@@ -247,6 +271,10 @@
     {
       "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/site.webmanifest",
+      "PackagePath": "staticwebassets/site.webmanifest"
     },
     {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Presentation.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

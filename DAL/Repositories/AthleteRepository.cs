@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 using Core.Domain.Entities;
 using Core.Interfaces;
-using MySql.Data.MySqlClient;
+using Npgsql;
 
 namespace DAL.Repositories
 {
@@ -21,16 +20,18 @@ namespace DAL.Repositories
         {
             var athletes = new List<Athlete>();
             
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                using (var command = new MySqlCommand("SELECT * FROM Athletes", connection))
+                var query = "SELECT * FROM athletes";
+                
+                using (var command = new NpgsqlCommand(query, connection))
                 {
                     using (var reader = await command.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                         {
-                            athletes.Add(MapAthleteFromReader((MySqlDataReader)reader));
+                            athletes.Add(MapAthleteFromReader(reader));
                         }
                     }
                 }
@@ -41,33 +42,37 @@ namespace DAL.Repositories
 
         public async Task<Athlete> GetAthleteByIdAsync(int id)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                using (var command = new MySqlCommand("SELECT * FROM Athletes WHERE Id = @Id", connection))
+                var query = "SELECT * FROM athletes WHERE id = @id";
+                
+                using (var command = new NpgsqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
+                    command.Parameters.AddWithValue("@id", id);
+                    
                     using (var reader = await command.ExecuteReaderAsync())
                     {
                         if (await reader.ReadAsync())
                         {
-                            return MapAthleteFromReader((MySqlDataReader)reader);
+                            return MapAthleteFromReader(reader);
                         }
-                        return null;
                     }
                 }
+                
+                return null;
             }
         }
 
         public async Task<Athlete> GetAthleteByUserIdAsync(int userId)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
                 // First, find the user's AthleteId from the Users table
-                using (var command = new MySqlCommand("SELECT AthleteId FROM Users WHERE Id = @UserId", connection))
+                using (var command = new NpgsqlCommand("SELECT athlete_id FROM users WHERE id = @userId", connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@userId", userId);
                     var athleteId = await command.ExecuteScalarAsync();
                     
                     if (athleteId == null || athleteId == DBNull.Value)
@@ -83,41 +88,60 @@ namespace DAL.Repositories
 
         public async Task<int> CreateAthleteAsync(Athlete athlete)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                string sql = @"INSERT INTO Athletes (FirstName, LastName, Age, Height, Weight, Sex, Goal) 
-                               VALUES (@FirstName, @LastName, @Age, @Height, @Weight, @Sex, @Goal);
-                               SELECT LAST_INSERT_ID();";
                 
-                using (var command = new MySqlCommand(sql, connection))
+                var query = @"
+                    INSERT INTO athletes (first_name, last_name, age, weight, height, sex, goal) 
+                    VALUES (@firstName, @lastName, @age, @weight, @height, @sex, @goal)
+                    RETURNING id";
+                
+                using (var command = new NpgsqlCommand(query, connection))
                 {
-                    AddAthleteParameters(command, athlete);
-                    athlete.Id = Convert.ToInt32(await command.ExecuteScalarAsync());
-                    return athlete.Id;
+                    command.Parameters.AddWithValue("@firstName", athlete.FirstName ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@lastName", athlete.LastName ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@age", athlete.Age);
+                    command.Parameters.AddWithValue("@weight", athlete.Weight);
+                    command.Parameters.AddWithValue("@height", athlete.Height);
+                    command.Parameters.AddWithValue("@sex", athlete.Sex);
+                    command.Parameters.AddWithValue("@goal", athlete.Goal);
+                    
+                    int athleteId = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    athlete.Id = athleteId;
+                    return athleteId;
                 }
             }
         }
 
         public async Task<bool> UpdateAthleteAsync(Athlete athlete)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                string sql = @"UPDATE Athletes 
-                               SET FirstName = @FirstName, 
-                                   LastName = @LastName, 
-                                   Age = @Age, 
-                                   Height = @Height, 
-                                   Weight = @Weight,
-                                   Sex = @Sex,
-                                   Goal = @Goal
-                               WHERE Id = @Id";
                 
-                using (var command = new MySqlCommand(sql, connection))
+                var query = @"
+                    UPDATE athletes
+                    SET first_name = @firstName, 
+                        last_name = @lastName, 
+                        age = @age, 
+                        weight = @weight, 
+                        height = @height, 
+                        sex = @sex, 
+                        goal = @goal
+                    WHERE id = @id";
+                
+                using (var command = new NpgsqlCommand(query, connection))
                 {
-                    AddAthleteParameters(command, athlete);
-                    command.Parameters.AddWithValue("@Id", athlete.Id);
+                    command.Parameters.AddWithValue("@id", athlete.Id);
+                    command.Parameters.AddWithValue("@firstName", athlete.FirstName ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@lastName", athlete.LastName ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@age", athlete.Age);
+                    command.Parameters.AddWithValue("@weight", athlete.Weight);
+                    command.Parameters.AddWithValue("@height", athlete.Height);
+                    command.Parameters.AddWithValue("@sex", athlete.Sex);
+                    command.Parameters.AddWithValue("@goal", athlete.Goal);
+                    
                     int rowsAffected = await command.ExecuteNonQueryAsync();
                     return rowsAffected > 0;
                 }
@@ -126,42 +150,35 @@ namespace DAL.Repositories
 
         public async Task<bool> DeleteAthleteAsync(int id)
         {
-            using (var connection = new MySqlConnection(_connectionString))
+            using (var connection = new NpgsqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
-                using (var command = new MySqlCommand("DELETE FROM Athletes WHERE Id = @Id", connection))
+                
+                var query = "DELETE FROM athletes WHERE id = @id";
+                
+                using (var command = new NpgsqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Id", id);
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    command.Parameters.AddWithValue("@id", id);
+                    
+                    var rowsAffected = await command.ExecuteNonQueryAsync();
                     return rowsAffected > 0;
                 }
             }
         }
 
-        private Athlete MapAthleteFromReader(MySqlDataReader reader)
+        private Athlete MapAthleteFromReader(NpgsqlDataReader reader)
         {
             return new Athlete
             {
-                Id = Convert.ToInt32(reader["Id"]),
-                FirstName = reader["FirstName"].ToString(),
-                LastName = reader["LastName"].ToString(),
-                Age = reader.IsDBNull(reader.GetOrdinal("Age")) ? 0 : Convert.ToInt32(reader["Age"]),
-                Height = reader.IsDBNull(reader.GetOrdinal("Height")) ? 0 : Convert.ToInt32(reader["Height"]),
-                Weight = reader.IsDBNull(reader.GetOrdinal("Weight")) ? 0 : Convert.ToInt32(reader["Weight"]),
-                Sex = reader.IsDBNull(reader.GetOrdinal("Sex")) ? "Male" : reader["Sex"].ToString(),
-                Goal = reader.IsDBNull(reader.GetOrdinal("Goal")) ? "Maintenance" : reader["Goal"].ToString()
+                Id = Convert.ToInt32(reader["id"]),
+                FirstName = reader["first_name"] as string ?? string.Empty,
+                LastName = reader["last_name"] as string ?? string.Empty,
+                Age = Convert.ToInt32(reader["age"]),
+                Weight = Convert.ToInt32(reader["weight"]),
+                Height = Convert.ToInt32(reader["height"]),
+                Sex = reader["sex"] != DBNull.Value ? reader["sex"].ToString() : "Male",
+                Goal = reader["goal"] != DBNull.Value ? reader["goal"].ToString() : "Maintenance"
             };
-        }
-
-        private void AddAthleteParameters(MySqlCommand command, Athlete athlete)
-        {
-            command.Parameters.AddWithValue("@FirstName", athlete.FirstName ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@LastName", athlete.LastName ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Age", athlete.Age == 0 ? 30 : athlete.Age);
-            command.Parameters.AddWithValue("@Height", athlete.Height == 0 ? 170 : athlete.Height);
-            command.Parameters.AddWithValue("@Weight", athlete.Weight == 0 ? 70 : athlete.Weight);
-            command.Parameters.AddWithValue("@Sex", string.IsNullOrEmpty(athlete.Sex) ? "Male" : athlete.Sex);
-            command.Parameters.AddWithValue("@Goal", string.IsNullOrEmpty(athlete.Goal) ? "Maintenance" : athlete.Goal);
         }
     }
 }

@@ -128,7 +128,7 @@ public class GenerateNutritionModel : PageModel
                 Weight, Height, Age, Sex, Goal, DietaryPreferences, HasAllergies, FoodIntolerances, DurationWeeks);
             
             // Call the service to generate the nutrition plan
-            var response = await _nutritionSchemaGenerator.GenerateNutritionPlanAsync(
+            var response = await _nutritionSchemaGenerator.GenerateNutritionSchemaAsync(
                 Weight, Height, Age, Sex, Goal, DietaryPreferences, HasAllergies, FoodIntolerances, DurationWeeks);
 
             // Log the full response to diagnose JSON structure

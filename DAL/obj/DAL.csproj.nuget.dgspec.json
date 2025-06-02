@@ -4,65 +4,6 @@
     "/Users/hasanhussein/RiderProjects/fitSync/DAL/DAL.csproj": {}
   },
   "projects": {
-    "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj",
-        "projectName": "ApiWrapper",
-        "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj",
-        "packagesPath": "/Users/hasanhussein/.nuget/packages/",
-        "outputPath": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/hasanhussein/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -144,9 +85,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj": {
-                "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj"
-              },
               "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj": {
                 "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj"
               }
@@ -257,9 +195,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "MySql.Data": {
+            "Npgsql": {
               "target": "Package",
-              "version": "[9.3.0, )"
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ApiWrapper.Services;
 using Core.Domain.Entities;
 using Core.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -38,17 +37,17 @@ namespace Core.Services
             }
 
             // Determine the gender for API call
-            string gender = athlete.Sex?.ToLower() ?? "male";
+            string sex = athlete.Sex?.ToLower() ?? "male";
             
             // Determine goal for API call
             string goal = athlete.Goal?.ToLower() ?? "strength";
 
             // Call the external service to generate a workout plan
-            string workoutPlanJson = await _generateWorkoutSchema.GenerateWorkoutPlanAsync(
+            string workoutPlanJson = await _generateWorkoutSchema.GenerateWorkoutSchemaAsync(
                 athlete.Weight, 
                 athlete.Height, 
                 athlete.Age, 
-                gender, 
+                sex, 
                 goal, 
                 workoutsPerWeek);
 
@@ -65,6 +64,15 @@ namespace Core.Services
                 Goal = goal,
                 Workouts = workoutPlan
             };
+
+            Console.WriteLine($"Workout Schema: {workoutSchema}");
+
+            Console.WriteLine($"Workout Schema: {workoutSchema.Name}");
+            Console.WriteLine($"Workout Schema: {workoutSchema.Workouts}");
+            Console.WriteLine($"Workout Schema: {workoutSchema.Goal}");
+            Console.WriteLine($"Workout Schema: {workoutSchema.CreatedDate}");
+            Console.WriteLine($"Workout Schema: {workoutSchema.WorkoutsPerWeek}");
+            Console.WriteLine($"Workout Schema: {workoutSchema.AthleteId}");
 
             // Save the workout schema to the database
             return await _workoutSchemaRepository.CreateWorkoutSchemaAsync(workoutSchema);
@@ -85,6 +93,12 @@ namespace Core.Services
                 if (workoutSchema.CreatedDate == default)
                 {
                     workoutSchema.CreatedDate = DateTime.Now;
+                }
+
+                // Ensure Goal is set
+                if (string.IsNullOrEmpty(workoutSchema.Goal))
+                {
+                    workoutSchema.Goal = athlete.Goal ?? "Maintenance";
                 }
 
                 // Save the workout schema to the database

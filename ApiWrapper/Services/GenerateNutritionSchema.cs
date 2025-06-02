@@ -3,22 +3,25 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Linq;
+using Core.Interfaces;
 
 namespace ApiWrapper.Services;
 
 public class GenerateNutritionSchema : INutritionSchemaGenerator
 {
     private readonly HttpClient _httpClient;
+    private readonly string _apiUrl;
 
-    public GenerateNutritionSchema(HttpClient httpClient)
+    public GenerateNutritionSchema(HttpClient httpClient, string apiUrl)
     {
         _httpClient = httpClient;
+        _apiUrl = apiUrl;
     }
     
-    public async Task<string> GenerateNutritionPlanAsync(int weight, int height, int age, string sex, 
+    public async Task<string> GenerateNutritionSchemaAsync(int weight, int height, int age, string sex, 
         string goal, string dietaryPreferences, bool hasAllergies, string foodIntolerances, int durationWeeks = 4)
     {
-        var requestUrl = "http://127.0.0.1:8000/nutrition-plans/generate";
+        var requestUrl = $"{_apiUrl}/nutrition-plans/generate";
 
         // Validate input parameters
         if (string.IsNullOrEmpty(sex)) sex = "male";

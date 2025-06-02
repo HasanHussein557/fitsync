@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using Npgsql;
 using Microsoft.Extensions.Logging;
 
 namespace DAL
@@ -37,8 +37,8 @@ namespace DAL
         {
             try
             {
-                _logger.LogInformation("Connecting to MySQL database...");
-                using (var connection = new MySqlConnection(_connectionString))
+                _logger.LogInformation("Connecting to PostgreSQL database...");
+                using (var connection = new NpgsqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
                     _logger.LogInformation("Connection successful!");
@@ -50,7 +50,7 @@ namespace DAL
                     {
                         if (!string.IsNullOrWhiteSpace(command))
                         {
-                            using (var cmd = new MySqlCommand(command, connection))
+                            using (var cmd = new NpgsqlCommand(command, connection))
                             {
                                 try
                                 {
@@ -81,67 +81,147 @@ namespace DAL
         public static string GetResetTablesSql()
         {
             return @"
-            -- Drop tables in reverse order of dependency
-            DROP TABLE IF EXISTS WorkoutSchemas;
-            DROP TABLE IF EXISTS Users;
-            DROP TABLE IF EXISTS Athletes;
+                -- Drop existing tables in correct order
+                DROP TABLE IF EXISTS meal_foods;
+                DROP TABLE IF EXISTS meal_plans;
+                DROP TABLE IF EXISTS nutrition_schemas;
+                DROP TABLE IF EXISTS workout_exercises;
+                DROP TABLE IF EXISTS workouts;
+                DROP TABLE IF EXISTS workout_schemas;
+                DROP TABLE IF EXISTS exercises;
+                DROP TABLE IF EXISTS user_roles;
+                DROP TABLE IF EXISTS users;
+                DROP TABLE IF EXISTS athletes;
+                DROP TABLE IF EXISTS foods;
 
-            -- Create Athletes table
-            CREATE TABLE IF NOT EXISTS Athletes (
-                Id INT NOT NULL AUTO_INCREMENT,
-                FirstName VARCHAR(50) NULL,
-                LastName VARCHAR(50) NULL,
-                Age INT NOT NULL,
-                Weight DECIMAL(5,2) NOT NULL,
-                Height DECIMAL(5,2) NOT NULL,
-                Sex VARCHAR(10) NOT NULL,
-                Goal VARCHAR(50) NOT NULL,
-                PRIMARY KEY (Id)
-            );
+                -- Now recreate tables
+                -- Athletes table
+                CREATE TABLE IF NOT EXISTS athletes (
+                    id SERIAL PRIMARY KEY,
+                    first_name VARCHAR(50),
+                    last_name VARCHAR(50),
+                    age INTEGER NOT NULL,
+                    weight DECIMAL(5,2) NOT NULL,
+                    height DECIMAL(5,2) NOT NULL,
+                    sex VARCHAR(10) NOT NULL,
+                    goal VARCHAR(50) NOT NULL
+                );
 
-            -- Create Users table
-            CREATE TABLE IF NOT EXISTS Users (
-                Id INT NOT NULL AUTO_INCREMENT,
-                Username VARCHAR(50) NOT NULL,
-                Email VARCHAR(100) NOT NULL,
-                PasswordHash VARCHAR(255) NOT NULL,
-                Salt VARCHAR(255) NOT NULL,
-                AthleteId INT NULL,
-                CreatedDate DATETIME NOT NULL,
-                LastLoginDate DATETIME NULL,
-                PRIMARY KEY (Id),
-                UNIQUE INDEX UX_Users_Username (Username),
-                UNIQUE INDEX UX_Users_Email (Email),
-                CONSTRAINT FK_Users_Athletes FOREIGN KEY (AthleteId) 
-                    REFERENCES Athletes (Id) ON DELETE SET NULL
-            );
-            
-            -- Create WorkoutSchemas table
-            CREATE TABLE IF NOT EXISTS WorkoutSchemas (
-                Id INT PRIMARY KEY AUTO_INCREMENT,
-                AthleteId INT NOT NULL,
-                Name VARCHAR(100),
-                CreatedDate DATETIME NOT NULL,
-                WorkoutsPerWeek INT NOT NULL,
-                Goal VARCHAR(50),
-                WorkoutsJson LONGTEXT,
-                FOREIGN KEY (AthleteId) REFERENCES Athletes(Id) ON DELETE CASCADE
-            );
-            
-            -- Create index for faster lookups by AthleteId
-            CREATE INDEX IX_WorkoutSchemas_AthleteId ON WorkoutSchemas(AthleteId);
+                -- Users table
+                CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY,
+                    username VARCHAR(50) NOT NULL UNIQUE,
+                    email VARCHAR(100) NOT NULL UNIQUE,
+                    password_hash VARCHAR(255) NOT NULL,
+                    salt VARCHAR(255) NOT NULL,
+                    athlete_id INTEGER REFERENCES athletes(id) ON DELETE CASCADE,
+                    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    last_login_date TIMESTAMP
+                );
 
-            -- Insert an admin user with athlete profile
-            INSERT INTO Athletes (FirstName, LastName, Age, Weight, Height, Sex, Goal)
-            VALUES ('Admin', 'User', 30, 70.0, 175.0, 'Male', 'Maintenance');
+                -- User roles table
+                CREATE TABLE IF NOT EXISTS user_roles (
+                    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                    role VARCHAR(50) NOT NULL,
+                    PRIMARY KEY (user_id, role)
+                );
 
-            INSERT INTO Users (Username, Email, PasswordHash, Salt, AthleteId, CreatedDate)
-            VALUES ('admin', 'admin@fitsync.com', 
-                    'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', -- password: admin123
-                    'admin_salt',
-                    1,
-                    NOW());
-            ";
+                -- Exercises table
+                CREATE TABLE IF NOT EXISTS exercises (
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(100) NOT NULL,
+                    category VARCHAR(50),
+                    primary_muscle_group VARCHAR(50),
+                    description TEXT
+                );
+
+                -- Workout schemas table
+                CREATE TABLE IF NOT EXISTS workout_schemas (
+                    id SERIAL PRIMARY KEY,
+                    athlete_id INTEGER NOT NULL REFERENCES athletes(id) ON DELETE CASCADE,
+                    name VARCHAR(100),
+                    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    workouts_per_week INTEGER NOT NULL,
+                    goal VARCHAR(50)
+                );
+
+                -- Workouts table
+                CREATE TABLE IF NOT EXISTS workouts (
+                    id SERIAL PRIMARY KEY,
+                    workout_schema_id INTEGER NOT NULL REFERENCES workout_schemas(id) ON DELETE CASCADE,
+                    name VARCHAR(100) NOT NULL,
+                    day_of_week INTEGER NOT NULL,
+                    workout_order INTEGER NOT NULL DEFAULT 0,
+                    notes TEXT
+                );
+
+                -- Workout exercises junction table
+                CREATE TABLE IF NOT EXISTS workout_exercises (
+                    id SERIAL PRIMARY KEY,
+                    workout_id INTEGER NOT NULL REFERENCES workouts(id) ON DELETE CASCADE,
+                    exercise_id INTEGER NOT NULL REFERENCES exercises(id) ON DELETE CASCADE,
+                    sets INTEGER NOT NULL DEFAULT 3,
+                    reps VARCHAR(20) NOT NULL DEFAULT '10-12',
+                    weight VARCHAR(20),
+                    duration VARCHAR(20),
+                    rest VARCHAR(20) NOT NULL DEFAULT '60s',
+                    exercise_order INTEGER NOT NULL DEFAULT 0,
+                    notes TEXT
+                );
+
+                -- Nutrition schemas table
+                CREATE TABLE IF NOT EXISTS nutrition_schemas (
+                    id SERIAL PRIMARY KEY,
+                    athlete_id INTEGER NOT NULL REFERENCES athletes(id) ON DELETE CASCADE,
+                    name VARCHAR(100),
+                    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    daily_calorie_target INTEGER,
+                    protein_target INTEGER,
+                    carb_target INTEGER,
+                    fat_target INTEGER,
+                    notes TEXT
+                );
+
+                -- Meal plans table
+                CREATE TABLE IF NOT EXISTS meal_plans (
+                    id SERIAL PRIMARY KEY,
+                    nutrition_schema_id INTEGER NOT NULL REFERENCES nutrition_schemas(id) ON DELETE CASCADE,
+                    name VARCHAR(50) NOT NULL,
+                    time VARCHAR(20),
+                    meal_order INTEGER NOT NULL DEFAULT 0
+                );
+
+                -- Foods table
+                CREATE TABLE IF NOT EXISTS foods (
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(100) NOT NULL,
+                    calories INTEGER NOT NULL,
+                    protein DECIMAL(5,2) NOT NULL,
+                    carbs DECIMAL(5,2) NOT NULL,
+                    fat DECIMAL(5,2) NOT NULL,
+                    serving_size DECIMAL(5,2) NOT NULL,
+                    serving_unit VARCHAR(20) NOT NULL
+                );
+
+                -- Meal foods junction table
+                CREATE TABLE IF NOT EXISTS meal_foods (
+                    id SERIAL PRIMARY KEY,
+                    meal_plan_id INTEGER NOT NULL REFERENCES meal_plans(id) ON DELETE CASCADE,
+                    food_id INTEGER NOT NULL REFERENCES foods(id) ON DELETE CASCADE,
+                    quantity DECIMAL(5,2) NOT NULL,
+                    notes TEXT
+                );
+
+                -- Create indexes for performance
+                CREATE INDEX IF NOT EXISTS idx_users_athlete_id ON users(athlete_id);
+                CREATE INDEX IF NOT EXISTS idx_workout_schemas_athlete_id ON workout_schemas(athlete_id);
+                CREATE INDEX IF NOT EXISTS idx_workouts_schema_id ON workouts(workout_schema_id);
+                CREATE INDEX IF NOT EXISTS idx_workout_exercises_workout_id ON workout_exercises(workout_id);
+                CREATE INDEX IF NOT EXISTS idx_workout_exercises_exercise_id ON workout_exercises(exercise_id);
+                CREATE INDEX IF NOT EXISTS idx_nutrition_schemas_athlete_id ON nutrition_schemas(athlete_id);
+                CREATE INDEX IF NOT EXISTS idx_meal_plans_schema_id ON meal_plans(nutrition_schema_id);
+                CREATE INDEX IF NOT EXISTS idx_meal_foods_meal_id ON meal_foods(meal_plan_id);
+                CREATE INDEX IF NOT EXISTS idx_meal_foods_food_id ON meal_foods(food_id);";
         }
     }
 } 

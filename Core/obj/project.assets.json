@@ -718,16 +718,6 @@
           }
         }
       },
-      "ApiWrapper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/ApiWrapper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ApiWrapper.dll": {}
-        }
-      },
       "Core.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -2718,11 +2708,6 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "ApiWrapper/1.0.0": {
-      "type": "project",
-      "path": "../ApiWrapper/ApiWrapper.csproj",
-      "msbuildProject": "../ApiWrapper/ApiWrapper.csproj"
-    },
     "Core.Domain/1.0.0": {
       "type": "project",
       "path": "../Core.Domain/Core.Domain.csproj",
@@ -2731,7 +2716,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "ApiWrapper >= 1.0.0",
       "Core.Domain >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 8.0.0",
@@ -2765,9 +2749,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj": {
-              "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj"
-            },
             "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj": {
               "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj"
             }

@@ -4,235 +4,217 @@
     ViewData["Title"] = "Generate Workout Plan";
 }
 
-<div class="container mx-auto px-4 py-6">
-    <h1 class="text-2xl font-bold text-center mb-4">Generate Your Workout Plan</h1>
-    
-    @if (!string.IsNullOrEmpty(Model.StatusMessage))
-    {
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            @Model.StatusMessage
-        </div>
-    }
-    
-    @if (!ModelState.IsValid)
-    {
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            <ul>
-                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    <li>@error.ErrorMessage</li>
-                }
-            </ul>
-        </div>
-    }
-    
-    <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <form method="post" id="workoutForm" class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="weight" class="block text-gray-700 mb-2">Weight (kg)</label>
-                    <input type="number" min="20" max="300" asp-for="Weight" 
-                           class="form-input rounded border-gray-300 w-full" required/>
-                </div>
-                
-                <div>
-                    <label for="height" class="block text-gray-700 mb-2">Height (cm)</label>
-                    <input type="number" min="110" max="250" asp-for="Height" 
-                           class="form-input rounded border-gray-300 w-full" required/>
-                </div>
-                
-                <div>
-                    <label for="age" class="block text-gray-700 mb-2">Age</label>
-                    <input type="number" min="16" max="100" asp-for="Age" 
-                           class="form-input rounded border-gray-300 w-full" required/>
-                </div>
-                
-                <div>
-                    <label for="sex" class="block text-gray-700 mb-2">Sex</label>
-                    <select asp-for="Sex" class="form-input rounded border-gray-300 w-full" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="goal" class="block text-gray-700 mb-2">Goal</label>
-                    <select asp-for="Goal" class="form-input rounded border-gray-300 w-full" required>
-                        <option value="general_fitness">General Fitness</option>
-                        <option value="fat_loss">Fat Loss</option>
-                        <option value="muscle_gain">Muscle Gain</option>
-                        <option value="athletic_performance">Athletic Performance</option>
-                        <option value="strength">Strength</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="fitnessLevel" class="block text-gray-700 mb-2">Fitness Level</label>
-                    <select asp-for="FitnessLevel" class="form-input rounded border-gray-300 w-full" required>
-                        <option value="1">Beginner</option>
-                        <option value="2">Intermediate</option>
-                        <option value="3">Advanced</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="workoutsPerWeek" class="block text-gray-700 mb-2">Workouts Per Week</label>
-                    <select asp-for="WorkoutsPerWeek" class="form-input rounded border-gray-300 w-full" required>
-                        <option value="2">2 days</option>
-                        <option value="3">3 days</option>
-                        <option value="4">4 days</option>
-                        <option value="5">5 days</option>
-                        <option value="6">6 days</option>
-                    </select>
-                </div>
+<div class="container-fluid p-0 bg-dark text-white">
+    <div class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">WORKOUT GENERATOR</span>
+                <h1 class="display-5 fw-bold mb-3" style="color: #c084fc;">Create Your Workout Plan</h1>
+                <p class="lead text-secondary mx-auto" style="max-width: 700px;">Personalize a workout routine based on your goals and fitness level</p>
             </div>
             
-            <div class="flex justify-center mt-4">
-                <button type="submit" id="generateBtn" class="btn btn-primary px-6 py-2">
-                    Generate Workout Plan
-                </button>
-                <div id="loadingIndicator" class="hidden flex items-center space-x-2">
-                    <div class="w-6 h-6 border-t-2 border-blue-500 border-solid rounded-full animate-spin"></div>
-                    <span>Generating plan...</span>
-                </div>
-            </div>
-        </form>
-    </div>
-    
-    @if (Model.WorkoutPlan != null)
-    {
-        <div class="mt-8 max-w-4xl mx-auto">
-            <h2 class="text-xl font-bold mb-6 text-center">Your Personalized Workout Plan</h2>
-            
-            <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <h3 class="font-bold text-lg mb-4 text-center text-blue-600">Warmup (Before Each Workout)</h3>
-                <p class="mb-2">@Model.WorkoutPlan.Warmup.Description</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                    @foreach (var exercise in Model.WorkoutPlan.Warmup.Exercises)
-                    {
-                        <div class="p-2 bg-blue-50 rounded">@exercise</div>
-                    }
-                </div>
-                <p class="mt-2 text-gray-600 text-sm">Duration: @Model.WorkoutPlan.Warmup.DurationMinutes minutes</p>
-            </div>
-            
-            @foreach (var workout in Model.WorkoutPlan.WorkoutSessions)
+            @if (!string.IsNullOrEmpty(Model.StatusMessage))
             {
-                <div class="bg-white p-4 rounded-lg shadow mb-4">
-                    <div class="flex justify-between items-center border-b pb-2 mb-3">
-                        <h4 class="font-bold text-lg text-blue-600">@workout.Name</h4>
-                        <span class="text-sm text-gray-600">@workout.DurationMinutes minutes</span>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <p class="font-semibold">Target Muscles:</p>
-                        <div class="flex flex-wrap gap-1 mt-1">
-                            @foreach (var muscle in workout.TargetMuscles)
-                            {
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs">@muscle</span>
-                            }
-                        </div>
-                    </div>
-                    
-                    <table class="w-full border-collapse">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="text-left p-2">Exercise</th>
-                                <th class="text-center p-2">Sets</th>
-                                <th class="text-center p-2">Reps</th>
-                                <th class="text-center p-2">Rest</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var exercise in workout.Exercises)
-                            {
-                                <tr class="border-b">
-                                    <td class="p-2">@exercise.Name</td>
-                                    <td class="text-center p-2">@exercise.Sets</td>
-                                    <td class="text-center p-2">@exercise.Reps</td>
-                                    <td class="text-center p-2">@exercise.Rest</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div class="alert alert-success alert-dismissible fade show rounded-4" role="alert">
+                    @Model.StatusMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
             
-            <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <h3 class="font-bold text-lg mb-4 text-center text-blue-600">Cooldown (After Each Workout)</h3>
-                <p class="mb-2">@Model.WorkoutPlan.Cooldown.Description</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                    @foreach (var exercise in Model.WorkoutPlan.Cooldown.Exercises)
-                    {
-                        <div class="p-2 bg-blue-50 rounded">@exercise</div>
-                    }
+            @if (!ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible fade show rounded-4" role="alert">
+                    <ul class="mb-0">
+                        @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <p class="mt-2 text-gray-600 text-sm">Duration: @Model.WorkoutPlan.Cooldown.DurationMinutes minutes</p>
-            </div>
-            
-            <div class="bg-white p-4 rounded-lg shadow mt-6">
-                <form method="post" asp-page-handler="SaveWorkout" id="saveForm">
-                    <input type="hidden" name="rawWorkoutPlan" value="@ViewData["WorkoutPlanJson"]" />
-                    <div class="mb-4">
-                        <label for="schemaName" class="block text-gray-700 mb-2">Workout Name</label>
-                        <input type="text" name="schemaName" value="@Model.Goal Workout - @DateTime.Now.ToString("yyyy-MM-dd")"
-                               class="form-input rounded border-gray-300 w-full" required />
-                    </div>
-                    <div class="flex justify-center">
-                        <button type="submit" id="saveBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-                            Save Workout Plan
-                        </button>
-                        <div id="savingIndicator" class="hidden flex items-center space-x-2">
-                            <div class="w-6 h-6 border-t-2 border-green-500 border-solid rounded-full animate-spin"></div>
-                            <span>Saving...</span>
+            }
+
+            <div class="card border-0 rounded-4 p-4 mb-5" style="background-color: #1f2937; border-color: #374151;">
+                <form method="post">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label for="weight" class="form-label text-light">Weight (kg)</label>
+                                <input type="number" min="20" max="300" asp-for="Weight" 
+                                    class="form-control form-control-lg bg-dark text-light border-secondary rounded-pill" required/>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="height" class="form-label text-light">Height (cm)</label>
+                                <input type="number" min="110" max="250" asp-for="Height" 
+                                    class="form-control form-control-lg bg-dark text-light border-secondary rounded-pill" required/>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="age" class="form-label text-light">Age</label>
+                                <input type="number" min="16" max="100" asp-for="Age" 
+                                    class="form-control form-control-lg bg-dark text-light border-secondary rounded-pill" required/>
+                            </div>
                         </div>
+                        
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label for="sex" class="form-label text-light">Sex</label>
+                                <select asp-for="Sex" class="form-select form-select-lg bg-dark text-light border-secondary rounded-pill" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="goal" class="form-label text-light">Goal</label>
+                                <select asp-for="Goal" class="form-select form-select-lg bg-dark text-light border-secondary rounded-pill" required>
+                                    <option value="general_fitness">General Fitness</option>
+                                    <option value="fat_loss">Fat Loss</option>
+                                    <option value="muscle_gain">Muscle Gain</option>
+                                    <option value="athletic_performance">Athletic Performance</option>
+                                    <option value="strength">Strength</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="fitnessLevel" class="form-label text-light">Fitness Level</label>
+                                <select asp-for="FitnessLevel" class="form-select form-select-lg bg-dark text-light border-secondary rounded-pill" required>
+                                    <option value="1">Beginner</option>
+                                    <option value="2">Intermediate</option>
+                                    <option value="3">Advanced</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <label for="workoutsPerWeek" class="form-label text-light">Workouts Per Week</label>
+                                <select asp-for="WorkoutsPerWeek" class="form-select form-select-lg bg-dark text-light border-secondary rounded-pill" required>
+                                    <option value="2">2 days</option>
+                                    <option value="3">3 days</option>
+                                    <option value="4">4 days</option>
+                                    <option value="5">5 days</option>
+                                    <option value="6">6 days</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-lg px-5 py-3 rounded-pill" style="background-color: #8b5cf6; color: white;">
+                            Generate Workout Plan
+                        </button>
                     </div>
                 </form>
             </div>
             
-            <div class="p-4 bg-blue-50 rounded-lg shadow border border-blue-200 text-center mt-6">
-                <p class="text-sm text-blue-800">
-                    This workout plan is a general guideline. Adjust exercises and intensity based on 
-                    your individual needs, preferences, and consultation with a healthcare professional.
-                </p>
+            @if (Model.WorkoutPlan?.WorkoutSessions != null && Model.WorkoutPlan.WorkoutSessions.Count > 0)
+            {
+                <div class="text-center my-5">
+                    <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">YOUR PLAN</span>
+                    <h2 class="display-6 fw-bold mb-4" style="color: #c084fc;">Workout Schedule</h2>
+                </div>
+                
+                <form method="post" asp-page-handler="Save">
+                    <!-- Hidden fields to preserve form values -->
+                    <input type="hidden" asp-for="Sex" />
+                    <input type="hidden" asp-for="Goal" />
+                    <input type="hidden" asp-for="Weight" />
+                    <input type="hidden" asp-for="Height" />
+                    <input type="hidden" asp-for="Age" />
+                    <input type="hidden" asp-for="FitnessLevel" />
+                    <input type="hidden" asp-for="WorkoutsPerWeek" />
+                    <input type="hidden" name="rawWorkoutPlan" value="@ViewData["WorkoutPlanJson"]" />
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <input type="text" name="schemaName" class="form-control bg-dark text-light border-secondary rounded-pill" 
+                                   placeholder="Enter workout plan name (optional)" />
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button type="submit" class="btn rounded-pill px-4 py-2" style="background-color: #6d28d9; color: white;">
+                                <i class="fas fa-save me-2"></i> Save This Plan
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        @foreach (var workout in Model.WorkoutPlan.WorkoutSessions)
+                        {
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #1f2937; border-color: #374151;">
+                                    <div class="card-header border-0 py-3" style="background-color: #4f46e5;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h3 class="h5 fw-bold mb-0 text-white">Workout Session</h3>
+                                            <span class="badge bg-dark">Training</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-dark table-borderless table-hover rounded">
+                                                <thead class="text-light" style="background-color: #374151;">
+                                                    <tr>
+                                                        <th>Exercise</th>
+                                                        <th class="text-center">Sets</th>
+                                                        <th class="text-center">Reps</th>
+                                                        <th class="text-center">Rest</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var exercise in workout.Exercises)
+                                                    {
+                                                        <tr>
+                                                            <td><span class="text-white">@exercise.Name</span></td>
+                                                            <td class="text-center">@exercise.Sets</td>
+                                                            <td class="text-center">@exercise.Reps</td>
+                                                            <td class="text-center">@exercise.Rest</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+    
+    @if (Model.WorkoutPlan?.WorkoutSessions != null && Model.WorkoutPlan.WorkoutSessions.Count > 0)
+    {
+        <div class="py-5" style="background-color: #1f2937;">
+            <div class="container text-center">
+                <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">NEXT STEPS</span>
+                <h2 class="display-6 fw-bold mb-3" style="color: #c084fc;">Ready to Start?</h2>
+                <p class="lead mb-5 mx-auto" style="max-width: 700px; color: #9ca3af;">Save this workout plan and track your progress as you get stronger and fitter.</p>
+                
+                <form method="post" asp-page-handler="Save">
+                    <!-- Hidden fields to preserve form values -->
+                    <input type="hidden" asp-for="Sex" />
+                    <input type="hidden" asp-for="Goal" />
+                    <input type="hidden" asp-for="Weight" />
+                    <input type="hidden" asp-for="Height" />
+                    <input type="hidden" asp-for="Age" />
+                    <input type="hidden" asp-for="FitnessLevel" />
+                    <input type="hidden" asp-for="WorkoutsPerWeek" />
+                    <input type="hidden" name="rawWorkoutPlan" value="@ViewData["WorkoutPlanJson"]" />
+                    
+                    <div class="mb-4">
+                        <input type="text" name="schemaName" class="form-control form-control-lg bg-dark text-light border-secondary rounded-pill text-center" 
+                               placeholder="Enter workout plan name (optional)" style="max-width: 400px; margin: 0 auto;" />
+                    </div>
+                    
+                    <button type="submit" class="btn btn-lg rounded-pill px-5 py-3" style="background-color: #8b5cf6; color: white;">
+                        Save & Start Training
+                    </button>
+                </form>
             </div>
         </div>
     }
-</div>
-
-@section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const workoutForm = document.getElementById('workoutForm');
-            const generateBtn = document.getElementById('generateBtn');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            
-            const saveForm = document.getElementById('saveForm');
-            const saveBtn = document.getElementById('saveBtn');
-            const savingIndicator = document.getElementById('savingIndicator');
-            
-            if (workoutForm) {
-                workoutForm.addEventListener('submit', function() {
-                    generateBtn.classList.add('hidden');
-                    loadingIndicator.classList.remove('hidden');
-                });
-            }
-            
-            if (saveForm) {
-                saveForm.addEventListener('submit', function() {
-                    saveBtn.classList.add('hidden');
-                    savingIndicator.classList.remove('hidden');
-                });
-            }
-            
-            // Initial load check (if returning from a post)
-            @if (Model.IsLoading) {
-                <text>
-                generateBtn.classList.add('hidden');
-                loadingIndicator.classList.remove('hidden');
-                </text>
-            }
-        });
-    </script>
-} 
+</div> 

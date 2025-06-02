@@ -1,0 +1,12 @@
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/bin/Debug/net8.0/Core.Domain.deps.json
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/bin/Debug/net8.0/Core.Domain.dll
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/bin/Debug/net8.0/Core.Domain.pdb
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.AssemblyInfoInputs.cache
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.AssemblyInfo.cs
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.csproj.CoreCompileInputs.cache
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.sourcelink.json
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.dll
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/refint/Core.Domain.dll
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/Core.Domain.pdb
+/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/obj/Debug/net8.0/ref/Core.Domain.dll

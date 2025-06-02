@@ -4,98 +4,111 @@
     ViewData["Title"] = Model.WorkoutSchema?.Name ?? "Workout Details";
 }
 
-<div class="container mx-auto px-4 py-6">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">@Model.WorkoutSchema?.Name</h1>
-        <a href="/WorkoutSchemas" class="text-blue-500 hover:text-blue-700">
-            &laquo; Back to Workouts
-        </a>
-    </div>
+<div class="container-fluid p-0 bg-dark text-white">
+    <div class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5">
+                <h1 class="display-5 fw-bold" style="color: #c084fc;">@Model.WorkoutSchema?.Name</h1>
+                <a href="/WorkoutSchemas" class="btn btn-outline-light rounded-pill">
+                    &laquo; Back to Workouts
+                </a>
+            </div>
 
-    @if (!string.IsNullOrEmpty(Model.StatusMessage))
-    {
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-            @Model.StatusMessage
-        </div>
-    }
-    
-    @if (Model.IsLoading)
-    {
-        <div class="flex justify-center py-10">
-            <div class="flex flex-col items-center">
-                <div class="w-10 h-10 border-t-2 border-blue-500 border-solid rounded-full animate-spin"></div>
-                <p class="mt-3">Loading workout details...</p>
-            </div>
-        </div>
-    }
-    else if (Model.WorkoutSchema != null)
-    {
-        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-            <div class="flex flex-wrap justify-between mb-6">
-                <div class="mb-4 md:mb-0">
-                    <p class="text-sm text-gray-600">Created on</p>
-                    <p class="font-semibold">@Model.WorkoutSchema.CreatedDate.ToString("MMMM dd, yyyy")</p>
+            @if (!string.IsNullOrEmpty(Model.StatusMessage))
+            {
+                <div class="alert alert-success alert-dismissible fade show rounded-4" role="alert">
+                    @Model.StatusMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div class="mb-4 md:mb-0">
-                    <p class="text-sm text-gray-600">Goal</p>
-                    <p class="font-semibold">@Model.WorkoutSchema.Goal.ToUpper()</p>
+            }
+            
+            @if (Model.IsLoading)
+            {
+                <div class="text-center py-5">
+                    <div class="spinner-border text-purple mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="lead text-secondary">Loading workout details...</p>
                 </div>
-                <div class="mb-4 md:mb-0">
-                    <p class="text-sm text-gray-600">Workouts Per Week</p>
-                    <p class="font-semibold">@Model.WorkoutSchema.WorkoutsPerWeek</p>
-                </div>
-                <div>
-                    <p class="text-sm text-gray-600">Total Exercises</p>
-                    <p class="font-semibold">@Model.WorkoutSchema.Workouts.Sum(w => w.Exercises.Count)</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="mt-8">
-            <h2 class="text-xl font-bold mb-6">Workout Schedule</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                @foreach (var workout in Model.WorkoutSchema.Workouts)
-                {
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="bg-blue-500 text-white p-4">
-                            <h3 class="font-bold text-lg">@workout.Name</h3>
-                            <p class="text-sm">Day @workout.DayOfWeek</p>
+            }
+            else if (Model.WorkoutSchema != null)
+            {
+                <div class="card border-0 rounded-4 p-4 mb-5" style="background-color: #1f2937; border-color: #374151;">
+                    <div class="row g-4 justify-content-between">
+                        <div class="col-md-3 col-sm-6">
+                            <p class="text-secondary mb-1">Created on</p>
+                            <p class="fw-bold text-light">@Model.WorkoutSchema.CreatedDate.ToString("MMMM dd, yyyy")</p>
                         </div>
-                        <div class="p-4">
-                            <table class="w-full border-collapse">
-                                <thead class="bg-gray-100">
-                                    <tr>
-                                        <th class="text-left p-2">Exercise</th>
-                                        <th class="text-center p-2">Sets</th>
-                                        <th class="text-center p-2">Reps</th>
-                                        <th class="text-center p-2">Rest</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var exercise in workout.Exercises)
-                                    {
-                                        <tr class="border-b">
-                                            <td class="p-2">@exercise.Name</td>
-                                            <td class="text-center p-2">@exercise.Sets</td>
-                                            <td class="text-center p-2">@exercise.Reps</td>
-                                            <td class="text-center p-2">@exercise.Rest</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="col-md-3 col-sm-6">
+                            <p class="text-secondary mb-1">Goal</p>
+                            <p class="fw-bold text-light">@Model.WorkoutSchema.Goal.ToUpper()</p>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <p class="text-secondary mb-1">Workouts Per Week</p>
+                            <p class="fw-bold text-light">@Model.WorkoutSchema.WorkoutsPerWeek</p>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <p class="text-secondary mb-1">Total Exercises</p>
+                            <p class="fw-bold text-light">@Model.WorkoutSchema.Workouts.Sum(w => w.Exercises.Count)</p>
                         </div>
                     </div>
-                }
-            </div>
+                </div>
+                
+                <div class="text-center my-5">
+                    <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">YOUR PLAN</span>
+                    <h2 class="display-6 fw-bold text-center mb-4" style="color: #c084fc;">Workout Schedule</h2>
+                </div>
+                
+                <div class="row g-4">
+                    @foreach (var workout in Model.WorkoutSchema.Workouts)
+                    {
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 rounded-4 overflow-hidden" style="background-color: #1f2937; border-color: #374151;">
+                                <div class="card-header border-0 py-3" style="background-color: #4f46e5;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h3 class="h5 fw-bold mb-0 text-white">@workout.Name</h3>
+                                        <span class="badge bg-dark">Day @workout.DayOfWeek</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-dark table-borderless table-hover rounded">
+                                            <thead class="text-light" style="background-color: #374151;">
+                                                <tr>
+                                                    <th>Exercise</th>
+                                                    <th class="text-center">Sets</th>
+                                                    <th class="text-center">Reps</th>
+                                                    <th class="text-center">Rest</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var exercise in workout.Exercises)
+                                                {
+                                                    <tr>
+                                                        <td><span class="text-white">@exercise.Name</span></td>
+                                                        <td class="text-center">@exercise.Sets</td>
+                                                        <td class="text-center">@exercise.Reps</td>
+                                                        <td class="text-center">@exercise.Rest</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+                <div class="text-center my-5">
+                    <a href="/WorkoutSchemas" class="btn btn-outline-light rounded-pill px-4 py-2 me-3">
+                        Back to All Workouts
+                    </a>
+                    <a href="/WorkoutSchema" class="btn btn-lg rounded-pill px-4 py-2" style="background-color: #8b5cf6; color: white;">
+                        Create New Workout
+                    </a>
+                </div>
+            }
         </div>
-        
-        <div class="mt-8 flex justify-center">
-            <a href="/WorkoutSchemas" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-4">
-                Back to All Workouts
-            </a>
-            <a href="/WorkoutSchema" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-                Create New Workout
-            </a>
-        </div>
-    }
+    </div>
 </div> 

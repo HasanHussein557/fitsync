@@ -1,51 +1,210 @@
 @page
+@using Core.Domain.Entities
 @model Presentation.Pages.Account.ProfileModel
+@inject Core.Interfaces.IAthleteRepository AthleteRepository
 @{
     ViewData["Title"] = "My Profile";
+    
+    // Load athlete data if available
+    Athlete athleteData = null;
+    if (Model.AthleteId.HasValue)
+    {
+        athleteData = await AthleteRepository.GetAthleteByIdAsync(Model.AthleteId.Value);
+    }
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h2>My Profile</h2>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Username</label>
-                        <p class="form-control-plaintext">@Model.Username</p>
-                    </div>
+<style>
+    /* Background pattern for the page */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 15% 50%, rgba(74, 111, 220, 0.05) 0%, transparent 25%),
+            radial-gradient(circle at 85% 30%, rgba(106, 74, 220, 0.05) 0%, transparent 25%),
+            linear-gradient(to bottom, #111827, #1f2937);
+        z-index: -1;
+    }
+    
+    /* Card hover animation */
+    .profile-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="profile-card card border-0 rounded-4 shadow" 
+                 style="background-color: #1f2937; color: white; overflow: hidden; box-shadow: 0 10px 50px rgba(106, 74, 220, 0.5), 0 5px 15px rgba(0, 0, 0, 0.5);">
+                <!-- Background Pattern -->
+                <div style="position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: linear-gradient(45deg, transparent 49%, rgba(106, 74, 220, 0.1) 50%, rgba(106, 74, 220, 0.1) 75%, transparent 76%); background-size: 10px 10px; opacity: 0.5; z-index: 0;"></div>
+                
+                <!-- Profile Header with Avatar -->
+                <div class="card-header border-0 py-5" style="background: linear-gradient(135deg, #4a6fdc 0%, #6a4adc 100%); position: relative;">
+                    <!-- Purple glow effect -->
+                    <div style="position: absolute; top: -20px; left: -20px; right: -20px; height: 40px; background: linear-gradient(to bottom, rgba(106, 74, 220, 0.3) 0%, transparent 100%); filter: blur(15px);"></div>
                     
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Email</label>
-                        <p class="form-control-plaintext">@Model.Email</p>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">Member Since</label>
-                        <p class="form-control-plaintext">@Model.CreatedDate.ToString("MMMM dd, yyyy")</p>
-                    </div>
-                    
-                    @if (Model.AthleteId.HasValue)
-                    {
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Athlete Information</label>
-                            <a asp-page="/Athlete/Details" asp-route-id="@Model.AthleteId" class="btn btn-outline-primary">View Athlete Profile</a>
+                    <div class="d-flex flex-column align-items-center text-center position-relative" style="z-index: 1;">
+                        <div class="rounded-circle mb-3 d-flex align-items-center justify-content-center" 
+                             style="width: 120px; height: 120px; background-color: rgba(255, 255, 255, 0.2); border: 4px solid rgba(255, 255, 255, 0.3); box-shadow: 0 0 25px rgba(106, 74, 220, 0.5);">
+                            <i class="fas fa-user" style="font-size: 3.5rem;"></i>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Athlete Information</label>
-                            <p>You don't have an athlete profile yet.</p>
-                            <a asp-page="/Account/Onboarding" class="btn btn-outline-primary">Create Athlete Profile</a>
-                        </div>
-                    }
+                        <h2 class="mb-1">@Model.Username</h2>
+                        <p class="text-white-50">Member since @Model.CreatedDate.ToString("MMMM yyyy")</p>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a asp-page="./ChangePassword" class="btn btn-secondary">Change Password</a>
-                    <a asp-page="./EditProfile" class="btn btn-primary">Edit Profile</a>
+                
+                <!-- Info Cards -->
+                <div class="card-body p-4 position-relative" style="z-index: 1;">
+                    <div class="row g-4">
+                        <!-- Account Info Card -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 rounded-4 p-4" style="background-color: rgba(0, 0, 0, 0.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+                                <h3 class="h5 mb-4" style="color: #a78bfa; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px;">
+                                    <i class="fas fa-user-shield me-2"></i>
+                                    Account Information
+                                </h3>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label text-white-50 small mb-1">Username</label>
+                                    <p class="form-control-plaintext text-white ps-3">@Model.Username</p>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label text-white-50 small mb-1">Email</label>
+                                    <p class="form-control-plaintext text-white ps-3">@Model.Email</p>
+                                </div>
+                                
+                                <div class="mb-0">
+                                    <label class="form-label text-white-50 small mb-1">Joined</label>
+                                    <p class="form-control-plaintext text-white ps-3">@Model.CreatedDate.ToString("MMMM dd, yyyy")</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Athlete Info Card -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 rounded-4 p-4" style="background-color: rgba(0, 0, 0, 0.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+                                <h3 class="h5 mb-4" style="color: #a78bfa; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px;">
+                                    <i class="fas fa-running me-2"></i>
+                                    Fitness Profile
+                                </h3>
+                                
+                                @if (Model.AthleteId.HasValue && athleteData != null)
+                                {
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Name</label>
+                                                <p class="text-white ps-3">@athleteData.Name</p>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Age</label>
+                                                <p class="text-white ps-3">@athleteData.Age years</p>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Sex</label>
+                                                <p class="text-white ps-3">@athleteData.Sex</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Height</label>
+                                                <p class="text-white ps-3">@athleteData.Height cm</p>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Weight</label>
+                                                <p class="text-white ps-3">@athleteData.Weight kg</p>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label class="text-white-50 small mb-1">Goal</label>
+                                                <p class="text-white ps-3">@athleteData.Goal</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center mt-3">
+                                        <a asp-page="/Account/Onboarding" asp-page-handler="Edit" 
+                                           class="btn rounded-pill px-4 py-2 w-100" style="background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                                            <i class="fas fa-edit me-2"></i>
+                                            Edit Fitness Profile
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="text-center py-3">
+                                        <div class="alert rounded-4" style="background-color: rgba(106, 74, 220, 0.2); border: none;">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            You don't have an athlete profile yet.
+                                        </div>
+                                        <a asp-page="/Account/Onboarding" 
+                                           class="btn rounded-pill px-4 py-2 w-100" style="background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                                            <i class="fas fa-plus-circle me-2"></i>
+                                            Create Athlete Profile
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Section (Just for visual) -->
+                    <div class="row mt-4 g-4">
+                        <div class="col-12">
+                            <div class="card border-0 rounded-4 p-4" style="background-color: rgba(0, 0, 0, 0.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+                                <h3 class="h5 mb-4" style="color: #a78bfa; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px;">
+                                    <i class="fas fa-chart-line me-2"></i>
+                                    Activity Overview
+                                </h3>
+                                
+                                <div class="row text-center">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <div class="p-3 rounded-4" style="background-color: rgba(106, 74, 220, 0.1); transition: all 0.3s ease;">
+                                            <div style="font-size: 2.5rem; font-weight: 600; color: #a78bfa;">0</div>
+                                            <div class="text-white-50">Workouts</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <div class="p-3 rounded-4" style="background-color: rgba(106, 74, 220, 0.1); transition: all 0.3s ease;">
+                                            <div style="font-size: 2.5rem; font-weight: 600; color: #a78bfa;">0</div>
+                                            <div class="text-white-50">Nutrition Plans</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-3 rounded-4" style="background-color: rgba(106, 74, 220, 0.1); transition: all 0.3s ease;">
+                                            <div style="font-size: 2.5rem; font-weight: 600; color: #a78bfa;">0</div>
+                                            <div class="text-white-50">Achievements</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer border-0 p-4 d-flex gap-3 justify-content-center" style="background-color: #111827;">
+                    <a asp-page="./ChangePassword" class="btn rounded-pill px-4 py-2" style="background-color: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease;">
+                        <i class="fas fa-key me-2"></i>
+                        Change Password
+                    </a>
+                    <a asp-page="./EditProfile" class="btn rounded-pill px-4 py-2" style="background-color: #9333ea; color: white; transition: all 0.3s ease;">
+                        <i class="fas fa-edit me-2"></i>
+                        Edit Profile
+                    </a>
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Core.Domain\Core.Domain.csproj" />
-      <ProjectReference Include="..\ApiWrapper\ApiWrapper.csproj" />
+
     </ItemGroup>
 
     <ItemGroup>

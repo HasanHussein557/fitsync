@@ -1,0 +1,7 @@
+{
+  "ApiWrapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/hasanhussein\/RiderProjects\/fitSync\/ApiWrapper",
+  "Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/hasanhussein\/RiderProjects\/fitSync\/Core",
+  "Core.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/hasanhussein\/RiderProjects\/fitSync\/Core.Domain",
+  "DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/hasanhussein\/RiderProjects\/fitSync\/DAL",
+  "Presentation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/hasanhussein\/RiderProjects\/fitSync\/Presentation"
+}

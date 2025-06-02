@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0EE16CB2-FD25-4668-A4F7-A71E7DE305BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{8BB70884-7446-4DA0-80E0-0729D344400A}"
@@ -9,6 +8,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{6C1A7382-981C-4BE4-9DC1-4372D588527D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiWrapper", "ApiWrapper\ApiWrapper.csproj", "{87D8B20C-FC7A-4200-A4ED-F04895CFACA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitSync.AcceptanceTests", "FitSync.AcceptanceTests\FitSync.AcceptanceTests.csproj", "{4F5A1E2D-7E87-4E5E-8D6A-9A0E92A7C3AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +37,9 @@ Global
 		{87D8B20C-FC7A-4200-A4ED-F04895CFACA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87D8B20C-FC7A-4200-A4ED-F04895CFACA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87D8B20C-FC7A-4200-A4ED-F04895CFACA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F5A1E2D-7E87-4E5E-8D6A-9A0E92A7C3AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F5A1E2D-7E87-4E5E-8D6A-9A0E92A7C3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F5A1E2D-7E87-4E5E-8D6A-9A0E92A7C3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F5A1E2D-7E87-4E5E-8D6A-9A0E92A7C3AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

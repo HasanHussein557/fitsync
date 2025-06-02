@@ -4,7 +4,6 @@ using Core.Interfaces;
 using Core.Services;
 using DAL;
 using DAL.Repositories;
-using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -22,15 +21,18 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<IWorkoutSchemaGenerator, GenerateWorkoutSchema>(sp => {
     var clientFactory = sp.GetRequiredService<IHttpClientFactory>();
     var client = clientFactory.CreateClient();
+    var apiUrl = builder.Configuration.GetValue<string>("ApiUrl");
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-    return new GenerateWorkoutSchema(client);
+    return new GenerateWorkoutSchema(client, apiUrl);
 });
 
+// Register the NutritionSchemaGenerator
 builder.Services.AddScoped<INutritionSchemaGenerator, GenerateNutritionSchema>(sp => {
     var clientFactory = sp.GetRequiredService<IHttpClientFactory>();
     var client = clientFactory.CreateClient();
     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-    return new GenerateNutritionSchema(client);
+    var apiUrl = builder.Configuration.GetValue<string>("ApiUrl");
+    return new GenerateNutritionSchema(client, apiUrl);
 });
 
 // Register the repositories
@@ -39,10 +41,18 @@ builder.Services.AddScoped<IAthleteRepository, AthleteRepository>(sp => {
     return new AthleteRepository(connectionString);
 });
 
+// Register the WorkoutSchemaRepository
 builder.Services.AddScoped<IWorkoutSchemaRepository, WorkoutSchemaRepository>(sp => {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     var logger = sp.GetRequiredService<ILogger<WorkoutSchemaRepository>>();
     return new WorkoutSchemaRepository(connectionString, logger);
+});
+
+// Register the NutritionSchemaRepository
+builder.Services.AddScoped<INutritionSchemaRepository, NutritionSchemaRepository>(sp => {
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var logger = sp.GetRequiredService<ILogger<NutritionSchemaRepository>>();
+    return new NutritionSchemaRepository(connectionString, logger);
 });
 
 // Register the UserRepository
@@ -68,8 +78,9 @@ builder.Services.AddScoped<IAthleteService, AthleteService>();
 builder.Services.AddScoped<WorkoutSchemaService>(sp => {
     var workoutSchemaRepo = sp.GetRequiredService<IWorkoutSchemaRepository>();
     var athleteRepo = sp.GetRequiredService<IAthleteRepository>();
-    var generateWorkoutSchema = sp.GetRequiredService<IWorkoutSchemaGenerator>();
-    return new WorkoutSchemaService(workoutSchemaRepo, athleteRepo, generateWorkoutSchema);
+    var generateWorkoutSchema = sp.GetRequiredService<Core.Interfaces.IWorkoutSchemaGenerator>();
+    var logger = sp.GetRequiredService<ILogger<WorkoutSchemaService>>();
+    return new WorkoutSchemaService(workoutSchemaRepo, athleteRepo, generateWorkoutSchema, logger);
 });
 
 // Add authentication
@@ -78,11 +89,15 @@ builder.Services.AddAuthentication(options => {
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
+
+// Add cookie authentication
 .AddCookie(options => {
-    options.LoginPath = "/Account/Login";
-    options.LogoutPath = "/Account/Logout";
-    options.AccessDeniedPath = "/Account/AccessDenied";
-    options.ExpireTimeSpan = TimeSpan.FromDays(14);
+    options.LoginPath = "/Login";
+    options.LogoutPath = "/Logout";
+    options.AccessDeniedPath = "/AccessDenied";
+    options.Cookie.Name = "FitSync.Auth";
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(7);
     options.SlidingExpiration = true;
 });
 

@@ -25,7 +25,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/hasanhussein/RiderProjects/fitSync/Core/Core.csproj": {
+                "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/Core/Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -144,9 +148,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj": {
-                "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/ApiWrapper/ApiWrapper.csproj"
-              },
               "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj": {
                 "projectPath": "/Users/hasanhussein/RiderProjects/fitSync/Core.Domain/Core.Domain.csproj"
               }
@@ -257,9 +258,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "MySql.Data": {
+            "Npgsql": {
               "target": "Package",
-              "version": "[9.3.0, )"
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

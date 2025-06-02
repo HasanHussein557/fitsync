@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1QJGoIKz7O/nfSOMH+IsxIOkyigBEUFmPAsoOg0bNyA=",
+  "Hash": "3alwxMhdk7rCSOj5ze1g/DJhLkFrHilyTGOjAPeLJeU=",
   "Source": "Presentation",
   "BasePath": "_content/Presentation",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "k1kcl344lb",
-      "Integrity": "eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=",
+      "Fingerprint": "l9ndviwjdo",
+      "Integrity": "CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/obj/Debug/net8.0/scopedcss/bundle/Presentation.styles.css"
@@ -52,11 +52,95 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "k1kcl344lb",
-      "Integrity": "eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=",
+      "Fingerprint": "l9ndviwjdo",
+      "Integrity": "CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/obj/Debug/net8.0/scopedcss/projectbundle/Presentation.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/about.txt",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "about#[.{fingerprint}]?.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5i4vylfenj",
+      "Integrity": "jW7pueRPRDVUC/rRtbMXToXgii25GFB7DcFu8e+Yaw4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/about.txt"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-192x192.png",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "android-chrome-192x192#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j6mg9303ip",
+      "Integrity": "tdasIio7UJ62Nnaq/iy7eStG3BN2XSIXBzIsnD2ErIU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/android-chrome-192x192.png"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-512x512.png",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "android-chrome-512x512#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "75033lhtsa",
+      "Integrity": "e8ofnkqb8JdPGwg3BH+vx0mVQTEdGqDwQ2l5UmCntd4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/android-chrome-512x512.png"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/apple-touch-icon.png",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "apple-touch-icon#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bcc2xt8ipr",
+      "Integrity": "BQDu2djUOU/ZAI86g+7MzfEY+xIHZvy4Jl/+4HdX6n8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/apple-touch-icon.png"
     },
     {
       "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/output.css",
@@ -94,11 +178,53 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ux3b85iu2a",
-      "Integrity": "ssQ+VkYM+11IL/nDMD1MhdX+wQTRgopDeeyvoRutd+s=",
+      "Fingerprint": "a2rfb5t1p8",
+      "Integrity": "wmWm0Lvu7rwjP/DCaxGLCWFoC4Zv52gOJW9XfUpM3JY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-16x16.png",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "favicon-16x16#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "x174fnzwby",
+      "Integrity": "tVdiqCPjkRJkN98Of3ZNkhYOMmFKwdGc3BaowEsUdrU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/favicon-16x16.png"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-32x32.png",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "favicon-32x32#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lng9wkighq",
+      "Integrity": "kczbJ/Ol6FRq0OqMT0jx99ExYt5hlqdB/bYSH0LmU18=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/favicon-32x32.png"
     },
     {
       "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon.ico",
@@ -115,8 +241,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "61n19gt1b8",
-      "Integrity": "Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=",
+      "Fingerprint": "v5woeegovi",
+      "Integrity": "LYFEMv0Gqvul4lySIy84Cf3zUzBbJzeUoh85I2IVIEU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
@@ -1338,9 +1464,358 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/site.webmanifest",
+      "SourceId": "Presentation",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/",
+      "BasePath": "_content/Presentation",
+      "RelativePath": "site#[.{fingerprint}]?.webmanifest",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6sx6pifph3",
+      "Integrity": "ep4Hzh9zhmiZF2At3Fp1dQrYQuYF/3ZPZxc1KcGBvwQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/site.webmanifest"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "about.5i4vylfenj.txt",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/about.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "378"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jW7pueRPRDVUC/rRtbMXToXgii25GFB7DcFu8e+Yaw4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5i4vylfenj"
+        },
+        {
+          "Name": "label",
+          "Value": "about.txt"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jW7pueRPRDVUC/rRtbMXToXgii25GFB7DcFu8e+Yaw4="
+        }
+      ]
+    },
+    {
+      "Route": "about.txt",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/about.txt",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "378"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jW7pueRPRDVUC/rRtbMXToXgii25GFB7DcFu8e+Yaw4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jW7pueRPRDVUC/rRtbMXToXgii25GFB7DcFu8e+Yaw4="
+        }
+      ]
+    },
+    {
+      "Route": "android-chrome-192x192.j6mg9303ip.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-192x192.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3029"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tdasIio7UJ62Nnaq/iy7eStG3BN2XSIXBzIsnD2ErIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j6mg9303ip"
+        },
+        {
+          "Name": "label",
+          "Value": "android-chrome-192x192.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-tdasIio7UJ62Nnaq/iy7eStG3BN2XSIXBzIsnD2ErIU="
+        }
+      ]
+    },
+    {
+      "Route": "android-chrome-192x192.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-192x192.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3029"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tdasIio7UJ62Nnaq/iy7eStG3BN2XSIXBzIsnD2ErIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tdasIio7UJ62Nnaq/iy7eStG3BN2XSIXBzIsnD2ErIU="
+        }
+      ]
+    },
+    {
+      "Route": "android-chrome-512x512.75033lhtsa.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-512x512.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11632"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"e8ofnkqb8JdPGwg3BH+vx0mVQTEdGqDwQ2l5UmCntd4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "75033lhtsa"
+        },
+        {
+          "Name": "label",
+          "Value": "android-chrome-512x512.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-e8ofnkqb8JdPGwg3BH+vx0mVQTEdGqDwQ2l5UmCntd4="
+        }
+      ]
+    },
+    {
+      "Route": "android-chrome-512x512.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/android-chrome-512x512.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11632"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"e8ofnkqb8JdPGwg3BH+vx0mVQTEdGqDwQ2l5UmCntd4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-e8ofnkqb8JdPGwg3BH+vx0mVQTEdGqDwQ2l5UmCntd4="
+        }
+      ]
+    },
+    {
+      "Route": "apple-touch-icon.bcc2xt8ipr.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/apple-touch-icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2913"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BQDu2djUOU/ZAI86g+7MzfEY+xIHZvy4Jl/+4HdX6n8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bcc2xt8ipr"
+        },
+        {
+          "Name": "label",
+          "Value": "apple-touch-icon.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BQDu2djUOU/ZAI86g+7MzfEY+xIHZvy4Jl/+4HdX6n8="
+        }
+      ]
+    },
+    {
+      "Route": "apple-touch-icon.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/apple-touch-icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2913"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BQDu2djUOU/ZAI86g+7MzfEY+xIHZvy4Jl/+4HdX6n8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BQDu2djUOU/ZAI86g+7MzfEY+xIHZvy4Jl/+4HdX6n8="
+        }
+      ]
+    },
     {
       "Route": "css/output.96bstoglvo.css",
       "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/output.css",
@@ -1424,6 +1899,51 @@
       ]
     },
     {
+      "Route": "css/site.a2rfb5t1p8.css",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4371"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"wmWm0Lvu7rwjP/DCaxGLCWFoC4Zv52gOJW9XfUpM3JY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 22 May 2025 12:38:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a2rfb5t1p8"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-wmWm0Lvu7rwjP/DCaxGLCWFoC4Zv52gOJW9XfUpM3JY="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/site.css",
       "Selectors": [],
@@ -1434,7 +1954,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "401"
+          "Value": "4371"
         },
         {
           "Name": "Content-Type",
@@ -1442,11 +1962,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ssQ+VkYM+11IL/nDMD1MhdX+wQTRgopDeeyvoRutd+s=\""
+          "Value": "\"wmWm0Lvu7rwjP/DCaxGLCWFoC4Zv52gOJW9XfUpM3JY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 09:55:36 GMT"
+          "Value": "Thu, 22 May 2025 12:38:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1456,13 +1976,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ssQ+VkYM+11IL/nDMD1MhdX+wQTRgopDeeyvoRutd+s="
+          "Value": "sha256-wmWm0Lvu7rwjP/DCaxGLCWFoC4Zv52gOJW9XfUpM3JY="
         }
       ]
     },
     {
-      "Route": "css/site.ux3b85iu2a.css",
-      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/css/site.css",
+      "Route": "favicon-16x16.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-16x16.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1471,19 +1991,56 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "401"
+          "Value": "539"
         },
         {
           "Name": "Content-Type",
-          "Value": "text/css"
+          "Value": "image/png"
         },
         {
           "Name": "ETag",
-          "Value": "\"ssQ+VkYM+11IL/nDMD1MhdX+wQTRgopDeeyvoRutd+s=\""
+          "Value": "\"tVdiqCPjkRJkN98Of3ZNkhYOMmFKwdGc3BaowEsUdrU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 09:55:36 GMT"
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-tVdiqCPjkRJkN98Of3ZNkhYOMmFKwdGc3BaowEsUdrU="
+        }
+      ]
+    },
+    {
+      "Route": "favicon-16x16.x174fnzwby.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-16x16.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "539"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"tVdiqCPjkRJkN98Of3ZNkhYOMmFKwdGc3BaowEsUdrU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1493,21 +2050,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ux3b85iu2a"
+          "Value": "x174fnzwby"
         },
         {
           "Name": "label",
-          "Value": "css/site.css"
+          "Value": "favicon-16x16.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ssQ+VkYM+11IL/nDMD1MhdX+wQTRgopDeeyvoRutd+s="
+          "Value": "sha256-tVdiqCPjkRJkN98Of3ZNkhYOMmFKwdGc3BaowEsUdrU="
         }
       ]
     },
     {
-      "Route": "favicon.61n19gt1b8.ico",
-      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon.ico",
+      "Route": "favicon-32x32.lng9wkighq.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-32x32.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1516,19 +2073,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5430"
+          "Value": "690"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/x-icon"
+          "Value": "image/png"
         },
         {
           "Name": "ETag",
-          "Value": "\"Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=\""
+          "Value": "\"kczbJ/Ol6FRq0OqMT0jx99ExYt5hlqdB/bYSH0LmU18=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 09:16:53 GMT"
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1538,15 +2095,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "61n19gt1b8"
+          "Value": "lng9wkighq"
         },
         {
           "Name": "label",
-          "Value": "favicon.ico"
+          "Value": "favicon-32x32.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+          "Value": "sha256-kczbJ/Ol6FRq0OqMT0jx99ExYt5hlqdB/bYSH0LmU18="
+        }
+      ]
+    },
+    {
+      "Route": "favicon-32x32.png",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon-32x32.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "690"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kczbJ/Ol6FRq0OqMT0jx99ExYt5hlqdB/bYSH0LmU18=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kczbJ/Ol6FRq0OqMT0jx99ExYt5hlqdB/bYSH0LmU18="
         }
       ]
     },
@@ -1561,7 +2155,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5430"
+          "Value": "15406"
         },
         {
           "Name": "Content-Type",
@@ -1569,11 +2163,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=\""
+          "Value": "\"LYFEMv0Gqvul4lySIy84Cf3zUzBbJzeUoh85I2IVIEU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 09:16:53 GMT"
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1583,7 +2177,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+          "Value": "sha256-LYFEMv0Gqvul4lySIy84Cf3zUzBbJzeUoh85I2IVIEU="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.v5woeegovi.ico",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/favicon.ico",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15406"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LYFEMv0Gqvul4lySIy84Cf3zUzBbJzeUoh85I2IVIEU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "v5woeegovi"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.ico"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LYFEMv0Gqvul4lySIy84Cf3zUzBbJzeUoh85I2IVIEU="
         }
       ]
     },
@@ -6354,7 +6993,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1081"
+          "Value": "1221"
         },
         {
           "Name": "Content-Type",
@@ -6362,11 +7001,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=\""
+          "Value": "\"CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 09 May 2025 18:32:20 GMT"
+          "Value": "Fri, 23 May 2025 08:26:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6376,12 +7015,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI="
+          "Value": "sha256-CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU="
         }
       ]
     },
     {
-      "Route": "Presentation.k1kcl344lb.bundle.scp.css",
+      "Route": "Presentation.l9ndviwjdo.bundle.scp.css",
       "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/obj/Debug/net8.0/scopedcss/projectbundle/Presentation.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6391,7 +7030,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1081"
+          "Value": "1221"
         },
         {
           "Name": "Content-Type",
@@ -6399,11 +7038,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=\""
+          "Value": "\"CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 09 May 2025 18:32:20 GMT"
+          "Value": "Fri, 23 May 2025 08:26:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6413,7 +7052,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "k1kcl344lb"
+          "Value": "l9ndviwjdo"
         },
         {
           "Name": "label",
@@ -6421,12 +7060,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI="
+          "Value": "sha256-CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU="
         }
       ]
     },
     {
-      "Route": "Presentation.k1kcl344lb.styles.css",
+      "Route": "Presentation.l9ndviwjdo.styles.css",
       "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/obj/Debug/net8.0/scopedcss/bundle/Presentation.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6436,7 +7075,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1081"
+          "Value": "1221"
         },
         {
           "Name": "Content-Type",
@@ -6444,11 +7083,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=\""
+          "Value": "\"CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 09 May 2025 18:32:20 GMT"
+          "Value": "Fri, 23 May 2025 08:26:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6458,7 +7097,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "k1kcl344lb"
+          "Value": "l9ndviwjdo"
         },
         {
           "Name": "label",
@@ -6466,7 +7105,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI="
+          "Value": "sha256-CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU="
         }
       ]
     },
@@ -6481,7 +7120,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1081"
+          "Value": "1221"
         },
         {
           "Name": "Content-Type",
@@ -6489,11 +7128,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI=\""
+          "Value": "\"CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 09 May 2025 18:32:20 GMT"
+          "Value": "Fri, 23 May 2025 08:26:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6503,7 +7142,89 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eFGpDIoVHFBtMMomynDgJB+N8iYPVTQdOTGVmYABMwI="
+          "Value": "sha256-CX6hwMsY89wfTMQAFuu3s/oiB8heb6oh3SafuK/eOyU="
+        }
+      ]
+    },
+    {
+      "Route": "site.6sx6pifph3.webmanifest",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/site.webmanifest",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "263"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/manifest+json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ep4Hzh9zhmiZF2At3Fp1dQrYQuYF/3ZPZxc1KcGBvwQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6sx6pifph3"
+        },
+        {
+          "Name": "label",
+          "Value": "site.webmanifest"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep4Hzh9zhmiZF2At3Fp1dQrYQuYF/3ZPZxc1KcGBvwQ="
+        }
+      ]
+    },
+    {
+      "Route": "site.webmanifest",
+      "AssetFile": "/Users/hasanhussein/RiderProjects/fitSync/Presentation/wwwroot/site.webmanifest",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "263"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/manifest+json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ep4Hzh9zhmiZF2At3Fp1dQrYQuYF/3ZPZxc1KcGBvwQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 16 May 2025 09:34:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ep4Hzh9zhmiZF2At3Fp1dQrYQuYF/3ZPZxc1KcGBvwQ="
         }
       ]
     }

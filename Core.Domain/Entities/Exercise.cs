@@ -9,11 +9,8 @@ public class Exercise
     public int Sets { get; set; }
     public string Reps { get; set; }
     public string Rest { get; set; }
-
-    public enum Intensity
-    {
-        Low,
-        Medium,
-        High
-    }
+    public string Category { get; set; }
+    public string PrimaryMuscleGroup { get; set; }
+    public string Description { get; set; }
+    public Intensity Intensity { get; set; }
 }

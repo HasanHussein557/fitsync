@@ -1,10 +1,134 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "FitSync - Your Personal Fitness Companion";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Dark-themed landing page that works with basic Tailwind and Bootstrap -->
+<div class="container-fluid p-0 bg-dark text-white">
+    <!-- Hero Section -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <span>Elevate Your</span><br>
+                        <span class="text-purple-400" style="color: #a78bfa;">Fitness Journey</span>
+                    </h1>
+                    <p class="lead mb-5">Track workouts, plan nutrition, and achieve your fitness goals with an AI-powered companion.</p>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="d-flex flex-column flex-sm-row gap-3">
+                            <a href="/Account/Register" class="btn btn-lg rounded-pill" style="background-color: #9333ea; color: white;">Get Started</a>
+                            <a href="/Account/Login" class="btn btn-lg rounded-pill btn-outline-light">Log In</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex flex-column flex-sm-row gap-3">
+                            <a href="/WorkoutSchemas" class="btn btn-lg rounded-pill" style="background-color: #9333ea; color: white;">My Workouts</a>
+                            <a href="/GenerateNutrition" class="btn btn-lg rounded-pill btn-outline-light">Nutrition Plan</a>
+                        </div>
+                    }
+                </div>
+                <div class="col-lg-6">
+                    <div class="rounded-4 overflow-hidden shadow" style="background-color: #1f2937;">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Fitness tracking" class="img-fluid rounded-3" style="opacity: 0.9;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="py-5" style="background-color: #111827;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">FEATURES</span>
+                <h2 class="display-5 fw-bold mb-3" style="color: #c084fc;">Everything You Need</h2>
+                <p class="lead text-secondary mx-auto" style="max-width: 700px;">Comprehensive tools to transform your fitness experience</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Feature Card 1 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 p-4" style="background-color: #1f2937; border-color: #374151;">
+                        <div class="rounded-4 d-flex align-items-center justify-content-center mb-4" 
+                             style="width: 60px; height: 60px; background-color: #6d28d9;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+                                <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z"/>
+                            </svg>
+                        </div>
+                        <h3 class="h4 fw-bold mb-3">Workout Schemas</h3>
+                        <p class="text-secondary mb-4">Create and customize workout plans tailored to your specific fitness goals and preferences.</p>
+                        <a href="/WorkoutSchemas" class="d-inline-flex align-items-center fw-medium mt-auto" style="color: #c084fc; text-decoration: none;">
+                            Explore Workouts
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Feature Card 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 p-4" style="background-color: #1f2937; border-color: #374151;">
+                        <div class="rounded-4 d-flex align-items-center justify-content-center mb-4" 
+                             style="width: 60px; height: 60px; background-color: #6d28d9;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm3.5-9.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1h2zm0 3a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1h2zm-5-3a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1h2zm0 3a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1h2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="h4 fw-bold mb-3">Nutrition Planning</h3>
+                        <p class="text-secondary mb-4">Get personalized nutrition recommendations based on your goals, dietary preferences, and training schedule.</p>
+                        <a href="/GenerateNutrition" class="d-inline-flex align-items-center fw-medium" style="color: #c084fc; text-decoration: none;">
+                            Plan Your Diet
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 rounded-4 p-4" style="background-color: #1f2937; border-color: #374151;">
+                        <div class="rounded-4 d-flex align-items-center justify-content-center mb-4" 
+                             style="width: 60px; height: 60px; background-color: #6d28d9;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="text-white" viewBox="0 0 16 16">
+                                <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="h4 fw-bold mb-3">Progress Tracking</h3>
+                        <p class="text-secondary mb-4">Monitor your performance over time with detailed analytics and visualizations of your fitness journey.</p>
+                        <a href="#" class="d-inline-flex align-items-center fw-medium mt-auto" style="color: #c084fc; text-decoration: none;">
+                            View Analytics
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="py-5" style="background-color: #1f2937;">
+        <div class="container text-center">
+            <span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #4c1d95; color: #d8b4fe;">GET STARTED</span>
+            <h2 class="display-5 fw-bold mb-3" style="color: #c084fc;">Ready to Transform?</h2>
+            <p class="lead mb-5 mx-auto" style="max-width: 700px; color: #9ca3af;">Join thousands of users who have transformed their lives with FitSync's comprehensive fitness platform.</p>
+            
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a href="/Account/Register" class="btn btn-lg rounded-pill px-5 py-3" style="background-color: #8b5cf6; color: white;">Start Your Journey Now</a>
+            }
+            else
+            {
+                <a href="/WorkoutSchemas" class="btn btn-lg rounded-pill px-5 py-3" style="background-color: #8b5cf6; color: white;">Go to Dashboard</a>
+            }
+        </div>
+    </div>
 </div>

@@ -13,5 +13,6 @@ namespace Core.Domain.Entities
         public int? AthleteId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
+        public List<string> Roles { get; set; } = new List<string>();
     }
 }

@@ -10,17 +10,19 @@ namespace ApiWrapper.Services;
 public class GenerateWorkoutSchema : IWorkoutSchemaGenerator
 {
     private readonly HttpClient _httpClient;
+    private readonly string _apiUrl;
 
-    public GenerateWorkoutSchema(HttpClient httpClient)
+    public GenerateWorkoutSchema(HttpClient httpClient, string apiUrl)
     {
         _httpClient = httpClient;
+        _apiUrl = apiUrl;
     }
     
-     public async Task<string> GenerateWorkoutPlanAsync(int weight, int height, int age, string sex, string goal, int workoutsPerWeek)
-        {
-            var requestUrl = "http://127.0.0.1:8000/workout-plans/generate";
+    public async Task<string> GenerateWorkoutSchemaAsync(int weight, int height, int age, string sex, string goal, int workoutsPerWeek)
+    {
+        var requestUrl = $"{_apiUrl}/workout-plans/generate";
 
-            // Validate input parameters
+            // Validate input parameters    
             if (workoutsPerWeek < 1) workoutsPerWeek = 3;
             if (string.IsNullOrEmpty(sex)) sex = "male";
             if (string.IsNullOrEmpty(goal)) goal = "strength";
